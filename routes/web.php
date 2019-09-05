@@ -19,14 +19,17 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/tickets', 'TicketController@index');
-    Route::post('/tickets', 'TicketController@store');
-    Route::get('/tickets/{ticket}', 'TicketController@show');
-
     Route::group(['middleware' => 'staff'], function () {
+
+        Route::get('/tickets/assigned', 'AssignedTicketController@index');
 
         Route::get('/group/{group}/tickets', 'GroupTicketController@index');
 
     });
+
+    Route::get('/tickets', 'TicketController@index');
+    Route::post('/tickets', 'TicketController@store');
+    Route::get('/tickets/{ticket}', 'TicketController@show');
+
 
 });

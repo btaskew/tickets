@@ -45,19 +45,4 @@ class ViewOwnTicketsTest extends TestCase
             ->get('tickets/' . $ticket->id)
             ->assertStatus(403);
     }
-
-    /** @test */
-    public function a_staff_member_can_view_a_ticket_assigned_to_them()
-    {
-        // TODO move to new test ViewAssignedTicketsTest
-        $this->signInStaff();
-
-        $ticket = create(Ticket::class, [
-            'user_id' => create(User::class)->id,
-            'assignee_id' => auth()->id()
-        ]);
-
-        $this->get('tickets/' . $ticket->id)
-            ->assertViewHas('ticket', $ticket);
-    }
 }

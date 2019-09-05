@@ -23,7 +23,7 @@ class CreateTicketsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
             $table->foreign('assignee_id')->references('id')->on('staff_users')->onDelete('set null');
         });
     }
