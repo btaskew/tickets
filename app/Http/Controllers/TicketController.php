@@ -9,14 +9,17 @@ class TicketController extends Controller
 {
     /**
      * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        Ticket::create([
+        $ticket = Ticket::create([
             'title' => $request->input('title'),
             'body' => $request->input('body'),
             'user_id' => auth()->id()
         ]);
+
+        return redirect('tickets/' . $ticket->id);
     }
 
     /**

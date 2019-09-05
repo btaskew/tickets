@@ -16,7 +16,8 @@ class CreateTicketTest extends TestCase
             ->post('tickets', [
                 'title' => 'New ticket',
                 'body' => 'My test ticket'
-            ]);
+            ])
+            ->assertRedirect('/tickets/1');
 
         $this->assertDatabaseHas('tickets', [
             'title' => 'New ticket',
