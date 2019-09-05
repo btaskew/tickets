@@ -23,5 +23,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/tickets', 'TicketController@store');
     Route::get('/tickets/{ticket}', 'TicketController@show');
 
-    Route::get('/group/{group}/tickets', 'GroupTicketController@index');
+    Route::group(['middleware' => 'staff'], function () {
+
+        Route::get('/group/{group}/tickets', 'GroupTicketController@index');
+
+    });
+
 });
