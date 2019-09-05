@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Group;
+use App\StaffUser;
 use App\Ticket;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -66,6 +67,7 @@ class ViewGroupsTicketsTest extends TestCase
 
         $ticket = create(Ticket::class, [
             'user_id' => create(User::class)->id,
+            'assignee_id' => create(StaffUser::class)->id,
             'group_id' => $group->id
         ]);
 

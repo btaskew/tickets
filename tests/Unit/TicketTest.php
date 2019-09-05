@@ -23,7 +23,7 @@ class TicketTest extends TestCase
     }
 
     /** @test */
-    public function a_ticket_has_an_assigned_group()
+    public function a_ticket_belongs_to_an_assigned_group()
     {
         $group = create(Group::class);
         $ticket = create(Ticket::class, ['group_id' => $group->id]);
@@ -32,7 +32,7 @@ class TicketTest extends TestCase
     }
 
     /** @test */
-    public function a_ticket_has_an_assigned_staff_user()
+    public function a_ticket_belongs_to_an_assigned_staff_user()
     {
         $staff = create(StaffUser::class);
         $ticket = create(Ticket::class, ['assignee_id' => $staff->id]);

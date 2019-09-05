@@ -29,6 +29,14 @@ class ViewAssignedTicketsTest extends TestCase
     }
 
     /** @test */
+    public function a_non_staff_member_cant_view_assigned_tickets()
+    {
+        $this->signIn()
+            ->get('tickets/assigned')
+            ->assertStatus(403);
+    }
+
+    /** @test */
     public function a_staff_member_can_view_a_ticket_assigned_to_them()
     {
         $this->signInStaff();
