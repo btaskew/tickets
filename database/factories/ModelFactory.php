@@ -37,7 +37,13 @@ $factory->define(Ticket::class, function (Faker $faker) {
         'body' => $faker->paragraph,
         'user_id' => function () {
             return factory(User::class)->create()->id;
-        }
+        },
+        'group_id' => function () {
+            return factory(Group::class)->create()->id;
+        },
+        'assignee_id' => function () {
+            return factory(StaffUser::class)->create()->id;
+        },
     ];
 });
 

@@ -16,6 +16,7 @@ class TicketController extends Controller
         $ticket = Ticket::create([
             'title' => $request->input('title'),
             'body' => $request->input('body'),
+            'group_id' => $request->input('group'),
             'user_id' => auth()->id()
         ]);
 

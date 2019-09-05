@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Ticket;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -24,7 +25,8 @@ class ViewTicketTest extends TestCase
     /** @test */
     public function a_user_cant_view_someone_elses_ticket()
     {
-        $ticket = create(Ticket::class, ['user_id' => 999]);
+        $otherUser = create(User::class);
+        $ticket = create(Ticket::class, ['user_id' => $otherUser->id]);
 
         $this->signIn()
             ->get('tickets/' . $ticket->id)
