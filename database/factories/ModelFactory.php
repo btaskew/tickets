@@ -2,6 +2,7 @@
 
 /** @var Factory $factory */
 
+use App\Group;
 use App\StaffUser;
 use App\Ticket;
 use App\User;
@@ -35,7 +36,7 @@ $factory->define(Ticket::class, function (Faker $faker) {
         'title' => $faker->sentence,
         'body' => $faker->paragraph,
         'user_id' => function () {
-            return factory()->create(User::class)->id;
+            return factory(User::class)->create()->id;
         }
     ];
 });
@@ -43,7 +44,16 @@ $factory->define(Ticket::class, function (Faker $faker) {
 $factory->define(StaffUser::class, function () {
     return [
         'user_id' => function () {
-            return factory()->create(User::class)->id;
-        }
+            return factory(User::class)->create()->id;
+        },
+        'group_id' => function () {
+            return factory(Group::class)->create()->id;
+        },
+    ];
+});
+
+$factory->define(Group::class, function (Faker $faker) {
+    return [
+        'name' => $faker->word
     ];
 });
