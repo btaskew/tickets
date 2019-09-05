@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class TicketController extends Controller
 {
     /**
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        return view('tickets.index', [
+            'tickets' => auth()->user()->tickets
+        ]);
+    }
+
+    /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
