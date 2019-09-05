@@ -30,7 +30,9 @@ class TicketPolicy
      */
     public function view(User $user, Ticket $ticket): bool
     {
-        return $user->id == $ticket->user_id;
+        return $user->id == $ticket->user_id
+            || $user->id == $ticket->assignee_id
+            || ($user->isStaff() && $user->staffUser->group->id == $ticket->group_id);
     }
 
     /**
