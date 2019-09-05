@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -36,4 +36,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @return HasOne
+     */
+    public function staffUser(): HasOne
+    {
+        return $this->hasOne(StaffUser::class);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isStaff(): bool
+    {
+        return $this->staffUser()->exists();
+    }
 }
