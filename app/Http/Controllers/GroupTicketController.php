@@ -12,9 +12,8 @@ class GroupTicketController extends Controller
      */
     public function index(Group $group)
     {
-        // TODO group tickets by assignees
         return view('groups.index', [
-            'tickets' => $group->tickets
+            'tickets' => $group->getGroupedTickets()
         ]);
     }
 }

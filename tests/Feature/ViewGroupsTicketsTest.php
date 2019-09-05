@@ -28,7 +28,7 @@ class ViewGroupsTicketsTest extends TestCase
             ->assertViewHas('tickets');
 
         // TODO change this to assert we can see the ticket title once views made
-        $this->assertTrue($response->getOriginalContent()->getData()['tickets']->contains($ticket));
+        $this->assertTrue($response->getOriginalContent()->getData()['tickets']->first()->contains($ticket));
     }
 
     /** @test */
