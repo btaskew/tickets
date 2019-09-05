@@ -18,4 +18,16 @@ class TicketController extends Controller
             'user_id' => auth()->id()
         ]);
     }
+
+    /**
+     * @param Ticket $ticket
+     * @return \Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function show(Ticket $ticket)
+    {
+        $this->authorize('view', $ticket);
+
+        return view('tickets.show', compact('ticket'));
+    }
 }

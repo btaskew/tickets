@@ -20,5 +20,6 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/tickets', 'TicketController@store');
+    Route::get('/tickets/{ticket}', 'TicketController@show');
 
 });
